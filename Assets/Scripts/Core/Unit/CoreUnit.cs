@@ -218,6 +218,8 @@ namespace OperationBlackwell.Core {
 		public abstract bool CanAttackUnit(CoreUnit unitGridCombat, Vector3 attackPos);
 		public abstract void AttackUnit(CoreUnit unitGridCombat, Actions.AttackType type, Action onAttackComplete);
 		public abstract int GetAttackCost();
+		public abstract int GetAttackMaxCost();
+		public abstract int GetAttackRange();
 		public abstract void SetActiveWeapon(int index);
 		public abstract string GetActiveWeapon();
 		public abstract Actions.AttackType GetAttackType();

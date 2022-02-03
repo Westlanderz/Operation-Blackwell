@@ -75,7 +75,8 @@ namespace OperationBlackwell.Player {
 			}
 
 			// Calculate the distance between the two units. But due to the -1 we can attack diagonal units, but also sometimes 1 node extra on the range.
-			int nodesBetweenPlayers = Utils.CalculatePoints(attackPos, unitGridCombat.GetPosition()).Count - 1;
+			int nodesBetweenPlayers = Utils.CalculatePoints(attackPos, unitGridCombat.GetPosition()).Count > 1
+				? Utils.CalculatePoints(attackPos, unitGridCombat.GetPosition()).Count - 1 : Utils.CalculatePoints(attackPos, unitGridCombat.GetPosition()).Count;
 			return nodesBetweenPlayers <= currentWeapon_.GetRange();
 		}
 
@@ -134,6 +135,10 @@ namespace OperationBlackwell.Player {
 
 		public override int GetAttackCost() {
 			return currentWeapon_.GetActionPointsCost();
+		}
+
+		public override int GetAttackMaxCost() {
+			return currentWeapon_.GetMaxCost();
 		}
 
 		/*	
@@ -264,6 +269,10 @@ namespace OperationBlackwell.Player {
 
 		public override String GetName() {
 			return "";
+		}
+
+		public override int GetAttackRange() {
+			return (int)currentWeapon_.GetRange();
 		}
 	}
 }
