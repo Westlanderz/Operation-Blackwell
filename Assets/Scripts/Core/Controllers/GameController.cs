@@ -17,9 +17,11 @@ namespace OperationBlackwell.Core {
 		[SerializeField] private MovementTilemapVisual movementTilemapVisual_;
 		[SerializeField] private MovementTilemapVisual arrowTilemapVisual_;
 		[SerializeField] private MovementTilemapVisual selectorTilemapVisual_;
+		[SerializeField] private MovementTilemapVisual attackRangeTilemapVisual_;
 		private MovementTilemap movementTilemap_;
 		private MovementTilemap arrowTilemap_;
 		private MovementTilemap selectorTilemap_;
+		private MovementTilemap attackRangeTilemap_;
 		public Grid<Tilemap.Node> grid { get; private set; }
 		public GridPathfinding gridPathfinding { get; private set; }
 		public Tilemap tilemap { get; private set; }
@@ -65,6 +67,10 @@ namespace OperationBlackwell.Core {
 				selectorTilemap_ = new MovementTilemap((int)gridWorldSize_.x, (int)gridWorldSize_.y, cellSize_, new Vector3(0, 0, 0));
 				selectorTilemap_.SetTilemapVisual(selectorTilemapVisual_);
 			}
+			if(attackRangeTilemapVisual_ != null) {
+				attackRangeTilemap_ = new MovementTilemap((int)gridWorldSize_.x, (int)gridWorldSize_.y, cellSize_, new Vector3(0, 0, 0));
+				attackRangeTilemap_.SetTilemapVisual(attackRangeTilemapVisual_);
+			}
 			tilemap.SetTilemapVisual(tilemapVisual_);
 
 			if(SceneManager.GetActiveScene().name == "TutorialLevel") {
@@ -101,6 +107,10 @@ namespace OperationBlackwell.Core {
 		
 		public MovementTilemap GetSelectorTilemap() {
 			return selectorTilemap_;
+		}
+
+		public MovementTilemap GetAttackRangeTilemap() {
+			return attackRangeTilemap_;
 		}
 
 		private void HandleMisc() {
